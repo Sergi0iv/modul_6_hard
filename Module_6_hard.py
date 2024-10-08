@@ -37,23 +37,29 @@ class Figure:
 
 class Circle(Figure):
     sides_count = 1
+    __radius = 0
 
-    def __init__(self, *sides, __radius):
+    def __init__(self, color, sides):
+        Figure.__init__(self, color, sides)
 
 
 
     def get_square(self):
-        for radius in self.__radius
+        self.__radius = self.sides / (2 * math.pi)
+        return self.__radius
+
 
 
 class Triangle(Figure):
     sides_count = 3
 
-    def __init__(self):
-        Figure.__init__(self)
+    def __init__(self, color, *sides):
+        Figure.__init__(self, color, *sides)
 
     def get_square(self):
-        pass
+        h = self.sides_count / (2 * self.sides)
+        S = (self.sides * h) / 2
+        return S
 
 
 class  Cube(Figure):
