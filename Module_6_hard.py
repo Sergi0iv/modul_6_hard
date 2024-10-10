@@ -30,7 +30,7 @@ class Figure:
         return True
 
     def set_sides(self, *sides):
-        if self.__is_valid_sides(sides):
+        if self.__is_valid_sides(*sides):
             self.__sides = sides
 
     def get_sides(self):
@@ -51,7 +51,7 @@ class Circle(Figure):
 
 
     def get_square(self):
-        return self.__radius
+        return len(self)**2/(4 * math.pi)
 
 
 
@@ -70,15 +70,12 @@ class Triangle(Figure):
 class Cube(Figure):
     sides_count = 12
 
-    def __init__(self, color, *sides):
-        self.sides = sides
-        Figure.__init__(self, color, *sides)
+    def __init__(self, color, sides):
+        cobe_sides = [sides] * self.sides_count
+        Figure.__init__(self, color, *cobe_sides)
 
     def get_volume(self):
-        S = self.sides_count * self.sides
-        V = S[0]**3
-
-        return V
+        return self.get_sides()[0]**3
 
 
 circle1 = Circle((200, 200, 100), 10)  # (Цвет, стороны)
@@ -95,12 +92,6 @@ cube1.set_sides(5, 3, 12, 4, 5) # Не изменится
 print(cube1.get_sides())
 circle1.set_sides(15) # Изменится
 print(circle1.get_sides())
-
-# Проверка периметра (круга), это и есть длина:
-print(len(circle1))
-
-# Проверка объёма (куба):
-print(cube1.get_volume())
 
 # Проверка периметра (круга), это и есть длина:
 print(len(circle1))
